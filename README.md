@@ -2,7 +2,6 @@
   <thead>
       <tr>
           <th style="text-align:center">English</th>
-          <th style="text-align:center"><a href="./README_cn.md">Chinese</a></th>
           <th style="text-align:center"><a href="./README_ko.md">한국어</a></th>
       </tr>
     </thead>
