@@ -1,0 +1,15 @@
+{
+  "default": {
+    "port": 28789
+  },
+  "heartbeat": {
+    "disabled": true,
+    "every": "30m",
+    "prompt": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
+    "ack_max_chars": 300,
+    "active_hours": {
+      "start": "09:00",
+      "end": "22:00"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# ClaudeClaw systemd user service
+#
+# Install:
+#   mkdir -p ~/.config/systemd/user
+#   cp claudeclaw.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable claudeclaw.service
+#   systemctl --user start claudeclaw.service
+#
+# Note: Adjust ExecStart to match the Python that has claude-agent-sdk installed.
+#   Check with: python3 -c "import claude_agent_sdk; print('ok')"
+#   If using pyenv: ExecStart=/home/gaebalai/.pyenv/shims/python3 -m src.daemon
+
+[Unit]
+Description=ClaudeClaw Resident AI Agent Daemon
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=python3 -m src.daemon
+WorkingDirectory=/home/gaebalai/.claudeclaw
+Restart=on-failure
+RestartSec=5
+KillMode=process
+StandardOutput=append:/home/gaebalai/.claudeclaw/daemon.log
+StandardError=append:/home/gaebalai/.claudeclaw/daemon.log
+
+[Install]
+WantedBy=default.target

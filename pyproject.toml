@@ -1,0 +1,70 @@
+[project]
+name = "claudeclaw"
+version = "0.1.0"
+description = "ClaudeClaw:An OpenClaw-style autonomous AI coding agent powered by Claude Code"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "claude-agent-sdk>=0.1.48",
+  "fastapi>=0.115.0",
+  "uvicorn>=0.30.0",
+  "apscheduler>=3.10,<4",
+  "argcomplete>=3.0",
+  "discord.py>=2.3",
+  "slack-bolt>=1.18",
+]
+
+[tool.ruff]
+extend-exclude = ["__pycache__"]
+target-version = "py313"
+line-length = 120                # 줄의 최대 길이
+indent-width = 4
+
+[tool.ruff.format]
+docstring-code-format = true      # docstring의 코드 블록을 포맷팅
+docstring-code-line-length = 120  # docstring의 최대 길이
+indent-style = "space"
+line-ending = "lf"                # 줄 끝은 LF로 설정
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = ["N", "E", "W", "D", "F", "I", "C90", "S", "TID", "ARG"]
+ignore = [
+  "D400",   # docstring 끝에 마침표를 요구하지 않음
+  "D415",   # docstring 끝에 마침표를 요구하지 않음
+  "TID252", # 상대 임포트 허용
+]
+fixable = ["ALL"] # 수정 가능한 코드는 모두 수정
+unfixable = [] # 수정을 무시할 에러 코드 목록
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$" # _, __로 시작하는 변수명 허용
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = [
+  "D104", # __init__.py는 문서가 불필요
+]
+
+[tool.ruff.lint.flake8-bandit]
+check-typed-exception = true # try-except-pass 금지
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 120 # docstring의 최대 길이
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15 # 순환 복잡도
+
+[tool.ruff.lint.isort]
+case-sensitive = true # 임포트 순서는 대소문자를 구분
+
+[tool.mypy]
+show_error_context = true
+show_column_numbers = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_return_any = true
+check_untyped_defs = true
+explicit_package_bases = true
